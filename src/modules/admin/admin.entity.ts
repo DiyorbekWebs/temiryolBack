@@ -24,9 +24,6 @@ export class Admin {
   @Column({ type: "text" })
   job: string;
 
-  @Column({ type: "int", default: 1 })
-  role: number;
-
   @Column({ type: "text" })
   passport: string;
 

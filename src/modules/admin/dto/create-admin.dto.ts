@@ -17,10 +17,6 @@ class CreateAdminDto {
   fullName: string;
 
   @IsNotEmpty()
-  @IsNumber()
-  role: number;
-
-  @IsNotEmpty()
   @IsString()
   passport: string;
 
