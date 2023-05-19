@@ -90,8 +90,12 @@ export class AdminService {
 
   async remove(id: string): Promise<DeleteResult> {
     const admin = await this.adminRepository.findOne({ where: { id } });
-    removeFile(admin.mehnatPath);
-    removeFile(admin.objectivePath);
+    if (admin.objectivePath) {
+      removeFile(admin.objectivePath);
+    }
+    if (admin.mehnatPath) {
+      removeFile(admin.mehnatPath);
+    }
     const response = await this.adminRepository.delete(id);
     return response;
   }
