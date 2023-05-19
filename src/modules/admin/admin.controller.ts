@@ -36,10 +36,13 @@ export async function getByFilialId(req: Request, res: Response) {
 
 export async function create(req, res: Response) {
   try {
-    let objectiveUrl = String(Date.now()) + req.files?.objective?.name;
-    const objectivePath = process.cwd() + "/uploads/" + objectiveUrl;
-    let mehnatUrl = String(Date.now()) + req.files?.mehnat?.name;
-    const mehnatPath = process.cwd() + "/uploads/" + mehnatUrl;
+    let objectiveName = String(Date.now()) + req.files?.objective?.name;
+    let objectiveUrl =
+      req.protocol + "://" + req.hostname + "/" + objectiveName;
+    const objectivePath = process.cwd() + "/uploads/" + objectiveName;
+    let mehnatName = String(Date.now()) + req.files?.mehnat?.name;
+    let mehnatUrl = req.protocol + "://" + req.hostname + "/" + mehnatName;
+    const mehnatPath = process.cwd() + "/uploads/" + mehnatName;
     req.files?.objective?.mv(objectivePath);
     req.files?.mehnat?.mv(mehnatPath);
 
@@ -52,7 +55,7 @@ export async function create(req, res: Response) {
       mehnatPath,
       mehnatUrl,
     });
-    res.send("response");
+    res.send(response);
   } catch (err) {
     res.status(500).send(new HttpException(true, 500, err.message));
   }
