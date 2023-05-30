@@ -12,7 +12,7 @@ export class Admin {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column({ type: "text", select: false })
+  @Column({ type: "text" })
   experience: string;
 
   @Column({ type: "text" })
